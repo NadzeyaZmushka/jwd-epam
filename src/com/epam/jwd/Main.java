@@ -16,13 +16,13 @@ public class Main {
     public static void main(String[] args) {
         LOGGER.trace("The program has started ");
         printInfoAboutPoints(points);
-        printInfoAboutFigures(lines);
-        printInfoAboutFigures(triangles);
-        printInfoAboutFigures(squares);
+        printInfoAboutFigure(lines);
+        printInfoAboutFigure(triangles);
+        printInfoAboutFigure(squares);
         LOGGER.trace("The program is over");
     }
 
-    public static void printInfoAboutFigures(Object[] objects) {
+    public static void printInfoAboutFigure(Object[] objects) {
         for (Object object : objects) {
             if (object != null){
                 LOGGER.info(object.toString());
