@@ -35,6 +35,7 @@ public class CreateArray {
         }
         return array;
     }
+
     private static Object[] createArrayOfLines() {
         Line[] array = new Line[2];
         for (int i = 0; i < array.length; i++) {
