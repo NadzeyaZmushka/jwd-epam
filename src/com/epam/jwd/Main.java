@@ -11,14 +11,14 @@ public class Main {
     private static final Object[] points = ArrayCreator.createArray(Figures.POINT, 4);
     private static final Object[] lines = ArrayCreator.createArray(Figures.LINE,2);
     private static final Object[] triangles = ArrayCreator.createArray(Figures.TRIANGLE,2);
-    private static final Object[] square = ArrayCreator.createArray(Figures.SQUARE,1);
+    private static final Object[] squares = ArrayCreator.createArray(Figures.SQUARE,1);
 
     public static void main(String[] args) {
         LOGGER.trace("The program has started ");
         printInfoAboutPoints(points);
         printInfoAboutFigure(lines);
         printInfoAboutFigure(triangles);
-        printInfoAboutFigure(square);
+        printInfoAboutFigure(squares);
         LOGGER.trace("The program is over");
     }
 
