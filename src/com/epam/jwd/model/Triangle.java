@@ -9,17 +9,7 @@ public class Triangle {
     private Point point2;
     private Point point3;
 
-    public static Triangle createTriangle(Point a, Point b, Point c) throws FigureCannotExistException {
-        Triangle triangle = null;
-        if (a.equals(b) || a.equals(c) || b.equals(c)) {
-            throw new FigureCannotExistException("not enough points");
-        } else {
-            triangle = new Triangle(a, b, c);
-        }
-        return triangle;
-    }
-
-    public Triangle(Point point1, Point point2, Point point3) {
+    private Triangle(Point point1, Point point2, Point point3) {
         this.point1 = point1;
         this.point2 = point2;
         this.point3 = point3;
@@ -51,6 +41,16 @@ public class Triangle {
 
     public static String getNAME() {
         return NAME;
+    }
+
+    public static Triangle createTriangle(Point a, Point b, Point c) throws FigureCannotExistException {
+        Triangle triangle;
+        if (a.equals(b) || a.equals(c) || b.equals(c)) {
+            throw new FigureCannotExistException("not enough points");
+        } else {
+            triangle = new Triangle(a, b, c);
+        }
+        return triangle;
     }
 
     @Override

@@ -13,22 +13,7 @@ public class Square {
     private Point point3;
     private Point point4;
 
-    public static Square createSquare(Point a, Point b, Point c, Point d) throws FigureCannotExistException {
-        Square square = null;
-        if (a.equals(b) || a.equals(c) || a.equals(d) || b.equals(c) || b.equals(d) || c.equals(d)) {
-            throw new FigureCannotExistException("not enough points");
-        } else if (calculateDistance(a, b) != calculateDistance(b, c) ||
-                calculateDistance(c, d) != calculateDistance(d, a) ||
-                calculateDistance(b, c) != calculateDistance(d, a) ||
-                calculateDistance(a, c) != calculateDistance(b, d)) {
-            throw new FigureCannotExistException("figure is rectangle but not square");
-        } else {
-            square = new Square(a, b, c, d);
-        }
-        return square;
-    }
-
-    public Square(Point point1, Point point2, Point point3, Point point4) {
+    private Square(Point point1, Point point2, Point point3, Point point4) {
         this.point1 = point1;
         this.point2 = point2;
         this.point3 = point3;
@@ -69,6 +54,21 @@ public class Square {
 
     public static String getNAME() {
         return NAME;
+    }
+
+    public static Square createSquare(Point a, Point b, Point c, Point d) throws FigureCannotExistException {
+        Square square;
+        if (a.equals(b) || a.equals(c) || a.equals(d) || b.equals(c) || b.equals(d) || c.equals(d)) {
+            throw new FigureCannotExistException("not enough points");
+        } else if (calculateDistance(a, b) != calculateDistance(b, c) ||
+                calculateDistance(c, d) != calculateDistance(d, a) ||
+                calculateDistance(b, c) != calculateDistance(d, a) ||
+                calculateDistance(a, c) != calculateDistance(b, d)) {
+            throw new FigureCannotExistException("figure is rectangle but not square");
+        } else {
+            square = new Square(a, b, c, d);
+        }
+        return square;
     }
 
     @Override

@@ -8,17 +8,7 @@ public class Line {
     private Point point1;
     private Point point2;
 
-    public static Line createLine(Point a, Point b) throws FigureCannotExistException {
-        Line line = null;
-        if (a.equals(b)) {
-            throw new FigureCannotExistException("not enough points");
-        } else {
-            line = new Line(a, b);
-        }
-        return line;
-    }
-
-    public Line(Point point1, Point point2) {
+    private Line(Point point1, Point point2) {
         this.point1 = point1;
         this.point2 = point2;
     }
@@ -41,6 +31,16 @@ public class Line {
 
     public static String getNAME() {
         return NAME;
+    }
+
+    public static Line createLine(Point a, Point b) throws FigureCannotExistException {
+        Line line;
+        if (a.equals(b)) {
+            throw new FigureCannotExistException("not enough points");
+        } else {
+            line = new Line(a, b);
+        }
+        return line;
     }
 
     @Override

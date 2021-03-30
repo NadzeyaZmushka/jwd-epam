@@ -1,0 +1,11 @@
+2021-03-31 00:55:13 [main] ERROR com.epam.jwd.action.ArrayCreator- Object class com.epam.jwd.model.Triangle isn't figure Triangle
+2021-03-31 00:55:13 [main] ERROR com.epam.jwd.action.ArrayCreator- object class com.epam.jwd.model.Square isn't figure Square
+2021-03-31 00:55:13 [main] TRACE com.epam.jwd.Main- The program has started 
+2021-03-31 00:55:13 [main] INFO  com.epam.jwd.Main- Point{x=0, y=-3}
+2021-03-31 00:55:13 [main] INFO  com.epam.jwd.Main- Point{x=-1, y=0}
+2021-03-31 00:55:13 [main] INFO  com.epam.jwd.Main- Point{x=0, y=-1}
+2021-03-31 00:55:13 [main] INFO  com.epam.jwd.Main- Point{x=4, y=3}
+2021-03-31 00:55:13 [main] INFO  com.epam.jwd.Main- Line{point1=Point{x=-4, y=0}, point2=Point{x=-1, y=-3}}
+2021-03-31 00:55:13 [main] INFO  com.epam.jwd.Main- Line{point1=Point{x=3, y=0}, point2=Point{x=-4, y=1}}
+2021-03-31 00:55:13 [main] INFO  com.epam.jwd.Main- Triangle{point1=Point{x=0, y=3}, point2=Point{x=2, y=4}, point3=Point{x=4, y=1}}
+2021-03-31 00:55:13 [main] TRACE com.epam.jwd.Main- The program is over

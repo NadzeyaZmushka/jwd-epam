@@ -22,7 +22,7 @@ public class Main {
         LOGGER.trace("The program is over");
     }
 
-    public static void printInfoAboutFigure(Object... objects) {
+    public static void printInfoAboutFigure(Object[] objects) {
         for (Object object : objects) {
             if (object != null) {
                 LOGGER.info(object.toString());

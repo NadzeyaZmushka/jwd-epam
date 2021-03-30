@@ -31,7 +31,7 @@ public class ArrayCreator {
     }
 
     private Object[] createArrayOfPoints(int size) {
-        Object[] array = new Object[size];
+        Point[] array = new Point[size];
         for (int i = 0; i < size; i++) {
             array[i] = Point.createPoint();
         }

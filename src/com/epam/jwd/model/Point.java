@@ -6,11 +6,7 @@ public class Point {
     private int x;
     private int y;
 
-    public static Point createPoint() {
-        return new Point((int) (Math.random() * 10 - 5), (int) (Math.random() * 10 - 5));
-    }
-
-    public Point(int x, int y) {
+    private Point(int x, int y) {
         this.x = x;
         this.y = y;
     }
@@ -29,6 +25,10 @@ public class Point {
 
     public void setY(int y) {
         this.y = y;
+    }
+
+    public static Point createPoint() {
+        return new Point((int) (Math.random() * 10 - 5), (int) (Math.random() * 10 - 5));
     }
 
     @Override
