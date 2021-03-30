@@ -1,5 +1,7 @@
 package com.epam.jwd.model;
 
+import java.util.Objects;
+
 public class Point {
     private int x;
     private int y;
@@ -33,18 +35,14 @@ public class Point {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-
         Point point = (Point) o;
-
-        if (x != point.x) return false;
-        return y == point.y;
+        return x == point.x &&
+                y == point.y;
     }
 
     @Override
     public int hashCode() {
-        int result = x;
-        result = 31 * result + y;
-        return result;
+        return Objects.hash(x, y);
     }
 
     @Override

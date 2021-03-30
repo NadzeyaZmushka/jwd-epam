@@ -1,6 +1,6 @@
 package com.epam.jwd.exception;
 
-public class FigureCannotExistException extends RuntimeException{
+public class FigureCannotExistException extends RuntimeException {
     public FigureCannotExistException() {
     }
 

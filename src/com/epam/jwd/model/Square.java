@@ -2,6 +2,8 @@ package com.epam.jwd.model;
 
 import com.epam.jwd.exception.FigureCannotExistException;
 
+import java.util.Objects;
+
 import static com.epam.jwd.action.Distance.*;
 
 public class Square {
@@ -14,12 +16,7 @@ public class Square {
 
     public static Square createSquare(Point a, Point b, Point c, Point d) throws FigureCannotExistException {
         Square square = null;
-        if (a.equals(b) ||
-                a.equals(c) ||
-                a.equals(d) ||
-                b.equals(c) ||
-                b.equals(d) ||
-                c.equals(d)) {
+        if (a.equals(b) || a.equals(c) || a.equals(d) || b.equals(c) || b.equals(d) || c.equals(d)) {
             throw new FigureCannotExistException("not enough points");
         } else if (calculateDistance(a, b) != calculateDistance(b, c) ||
                 calculateDistance(c, d) != calculateDistance(d, a) ||
@@ -79,22 +76,16 @@ public class Square {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-
         Square square = (Square) o;
-
-        if (point1 != null ? !point1.equals(square.point1) : square.point1 != null) return false;
-        if (point2 != null ? !point2.equals(square.point2) : square.point2 != null) return false;
-        if (point3 != null ? !point3.equals(square.point3) : square.point3 != null) return false;
-        return point4 != null ? point4.equals(square.point4) : square.point4 == null;
+        return Objects.equals(point1, square.point1) &&
+                Objects.equals(point2, square.point2) &&
+                Objects.equals(point3, square.point3) &&
+                Objects.equals(point4, square.point4);
     }
 
     @Override
     public int hashCode() {
-        int result = point1 != null ? point1.hashCode() : 0;
-        result = 31 * result + (point2 != null ? point2.hashCode() : 0);
-        result = 31 * result + (point3 != null ? point3.hashCode() : 0);
-        result = 31 * result + (point4 != null ? point4.hashCode() : 0);
-        return result;
+        return Objects.hash(point1, point2, point3, point4);
     }
 
     @Override

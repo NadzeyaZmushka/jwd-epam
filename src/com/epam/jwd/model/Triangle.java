@@ -2,6 +2,8 @@ package com.epam.jwd.model;
 
 import com.epam.jwd.exception.FigureCannotExistException;
 
+import java.util.Objects;
+
 public class Triangle {
     private static final String NAME = "Triangle";
     private Point point1;
@@ -12,7 +14,7 @@ public class Triangle {
         Triangle triangle = null;
         if (a.equals(b) || a.equals(c) || b.equals(c)) {
             throw new FigureCannotExistException("not enough points");
-        }else {
+        } else {
             triangle = new Triangle(a, b, c);
         }
         return triangle;
@@ -56,20 +58,15 @@ public class Triangle {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-
         Triangle triangle = (Triangle) o;
-
-        if (point1 != null ? !point1.equals(triangle.point1) : triangle.point1 != null) return false;
-        if (point2 != null ? !point2.equals(triangle.point2) : triangle.point2 != null) return false;
-        return point3 != null ? point3.equals(triangle.point3) : triangle.point3 == null;
+        return Objects.equals(point1, triangle.point1) &&
+                Objects.equals(point2, triangle.point2) &&
+                Objects.equals(point3, triangle.point3);
     }
 
     @Override
     public int hashCode() {
-        int result = point1 != null ? point1.hashCode() : 0;
-        result = 31 * result + (point2 != null ? point2.hashCode() : 0);
-        result = 31 * result + (point3 != null ? point3.hashCode() : 0);
-        return result;
+        return Objects.hash(point1, point2, point3);
     }
 
     @Override

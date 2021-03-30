@@ -2,6 +2,8 @@ package com.epam.jwd.model;
 
 import com.epam.jwd.exception.FigureCannotExistException;
 
+import java.util.Objects;
+
 public class Line {
     private static final String NAME = "Line";
     private Point point1;
@@ -11,7 +13,7 @@ public class Line {
         Line line = null;
         if (a.equals(b)) {
             throw new FigureCannotExistException("not enough points");
-        }else {
+        } else {
             line = new Line(a, b);
         }
         return line;
@@ -46,18 +48,14 @@ public class Line {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-
         Line line = (Line) o;
-
-        if (point1 != null ? !point1.equals(line.point1) : line.point1 != null) return false;
-        return point2 != null ? point2.equals(line.point2) : line.point2 == null;
+        return Objects.equals(point1, line.point1) &&
+                Objects.equals(point2, line.point2);
     }
 
     @Override
     public int hashCode() {
-        int result = point1 != null ? point1.hashCode() : 0;
-        result = 31 * result + (point2 != null ? point2.hashCode() : 0);
-        return result;
+        return Objects.hash(point1, point2);
     }
 
     @Override
