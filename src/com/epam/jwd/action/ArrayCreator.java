@@ -8,21 +8,21 @@ import org.apache.logging.log4j.Logger;
 public class ArrayCreator {
     private static final Logger LOGGER = LogManager.getLogger();
 
-    public static Object[] createArray(Figures type) {
+    public static Object[] createArray(Figures type, int size) {
         ArrayCreator creator = new ArrayCreator();
         Object[] array = null;
         switch (type) {
             case POINT:
-                array = creator.createArrayOfPoints();
+                array = creator.createArrayOfPoints(size);
                 break;
             case LINE:
-                array = creator.createArrayOfLines();
+                array = creator.createArrayOfLines(size);
                 break;
             case TRIANGLE:
-                array = creator.createArrayOfTriangles();
+                array = creator.createArrayOfTriangles(size);
                 break;
             case SQUARE:
-                array = creator.createArrayOfSquare();
+                array = creator.createArrayOfSquare(size);
                 break;
             default:
                 LOGGER.error("Wrong figure");
@@ -30,17 +30,17 @@ public class ArrayCreator {
         return array;
     }
 
-    private Object[] createArrayOfPoints() {
-        Object[] array = new Object[4];
-        for (int i = 0; i < array.length; i++) {
+    private Object[] createArrayOfPoints(int size) {
+        Object[] array = new Object[size];
+        for (int i = 0; i < size; i++) {
             array[i] = Point.createPoint();
         }
         return array;
     }
 
-    private Object[] createArrayOfLines() {
-        Line[] array = new Line[2];
-        for (int i = 0; i < array.length; i++) {
+    private Object[] createArrayOfLines(int size) {
+        Line[] array = new Line[size];
+        for (int i = 0; i < size; i++) {
             try {
                 array[i] = Line.createLine(Point.createPoint(),
                         Point.createPoint());
@@ -51,9 +51,9 @@ public class ArrayCreator {
         return array;
     }
 
-    private Object[] createArrayOfTriangles() {
-        Triangle[] array = new Triangle[2];
-        for (int i = 0; i < array.length; i++) {
+    private Object[] createArrayOfTriangles(int size) {
+        Triangle[] array = new Triangle[size];
+        for (int i = 0; i < size; i++) {
             try {
                 array[i] = Triangle.createTriangle(Point.createPoint(),
                         Point.createPoint(),
@@ -65,9 +65,9 @@ public class ArrayCreator {
         return array;
     }
 
-    private Object[] createArrayOfSquare() {
-        Square[] array = new Square[1];
-        for (int i = 0; i < array.length; i++) {
+    private Object[] createArrayOfSquare(int size) {
+        Square[] array = new Square[size];
+        for (int i = 0; i < size; i++) {
             try {
                 array[i] = Square.createSquare(Point.createPoint(),
                         Point.createPoint(),

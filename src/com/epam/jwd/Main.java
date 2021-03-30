@@ -8,10 +8,10 @@ import org.apache.logging.log4j.Logger;
 public class Main {
     private static final Logger LOGGER = LogManager.getLogger();
 
-    private static final Object[] points = ArrayCreator.createArray(Figures.POINT);
-    private static final Object[] lines = ArrayCreator.createArray(Figures.LINE);
-    private static final Object[] triangles = ArrayCreator.createArray(Figures.TRIANGLE);
-    private static final Object[] squares = ArrayCreator.createArray(Figures.SQUARE);
+    private static final Object[] points = ArrayCreator.createArray(Figures.POINT, 4);
+    private static final Object[] lines = ArrayCreator.createArray(Figures.LINE,2);
+    private static final Object[] triangles = ArrayCreator.createArray(Figures.TRIANGLE,2);
+    private static final Object[] squares = ArrayCreator.createArray(Figures.SQUARE,1);
 
     public static void main(String[] args) {
         LOGGER.trace("The program has started ");
