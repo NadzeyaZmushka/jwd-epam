@@ -1,19 +1,17 @@
 package com.epam.jwd.model;
 
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+import com.epam.jwd.exception.FigureCannotExistException;
 
 public class Triangle {
-    private static final Logger LOGGER = LogManager.getLogger();
     private static final String NAME = "Triangle";
     private Point point1;
     private Point point2;
     private Point point3;
 
-    public static Triangle createTriangle(Point a, Point b, Point c) {
+    public static Triangle createTriangle(Point a, Point b, Point c) throws FigureCannotExistException {
         Triangle triangle = null;
         if (a.equals(b) || a.equals(c) || b.equals(c)) {
-            LOGGER.error("Object " + Triangle.class.toString() + " isn't figure " + NAME);
+            throw new FigureCannotExistException("not enough points");
         }else {
             triangle = new Triangle(a, b, c);
         }
@@ -48,6 +46,10 @@ public class Triangle {
 
     public void setPoint3(Point point3) {
         this.point3 = point3;
+    }
+
+    public static String getNAME() {
+        return NAME;
     }
 
     @Override

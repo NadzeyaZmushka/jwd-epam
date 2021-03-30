@@ -1,12 +1,10 @@
 package com.epam.jwd.model;
 
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+import com.epam.jwd.exception.FigureCannotExistException;
 
 import static com.epam.jwd.action.Distance.*;
 
 public class Square {
-    private static final Logger LOGGER = LogManager.getLogger();
     private static final String NAME = "Square";
 
     private Point point1;
@@ -14,7 +12,7 @@ public class Square {
     private Point point3;
     private Point point4;
 
-    public static Square createSquare(Point a, Point b, Point c, Point d) {
+    public static Square createSquare(Point a, Point b, Point c, Point d) throws FigureCannotExistException {
         Square square = null;
         if (a.equals(b) ||
                 a.equals(c) ||
@@ -22,12 +20,12 @@ public class Square {
                 b.equals(c) ||
                 b.equals(d) ||
                 c.equals(d)) {
-            LOGGER.error("object " + Square.class.toString() + " isn't figure " + NAME);
+            throw new FigureCannotExistException("not enough points");
         } else if (calculateDistance(a, b) != calculateDistance(b, c) ||
                 calculateDistance(c, d) != calculateDistance(d, a) ||
                 calculateDistance(b, c) != calculateDistance(d, a) ||
                 calculateDistance(a, c) != calculateDistance(b, d)) {
-            LOGGER.error("object " + Square.class.toString() + " is rectangle, but not " + NAME);
+            throw new FigureCannotExistException("figure is rectangle but not square");
         } else {
             square = new Square(a, b, c, d);
         }
@@ -71,6 +69,10 @@ public class Square {
 
     public void setPoint4(Point point4) {
         this.point4 = point4;
+    }
+
+    public static String getNAME() {
+        return NAME;
     }
 
     @Override

@@ -1,6 +1,6 @@
 package com.epam.jwd;
 
-import com.epam.jwd.action.CreateArray;
+import com.epam.jwd.action.ArrayCreator;
 import com.epam.jwd.model.*;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -8,10 +8,10 @@ import org.apache.logging.log4j.Logger;
 public class Main {
     private static final Logger LOGGER = LogManager.getLogger();
 
-    private static final Object[] points = CreateArray.createArray(Figures.POINT);
-    private static final Object[] lines = CreateArray.createArray(Figures.LINE);
-    private static final Object[] triangles = CreateArray.createArray(Figures.TRIANGLE);
-    private static final Object[] squares = CreateArray.createArray(Figures.SQUARE);
+    private static final Object[] points = ArrayCreator.createArray(Figures.POINT);
+    private static final Object[] lines = ArrayCreator.createArray(Figures.LINE);
+    private static final Object[] triangles = ArrayCreator.createArray(Figures.TRIANGLE);
+    private static final Object[] squares = ArrayCreator.createArray(Figures.SQUARE);
 
     public static void main(String[] args) {
         LOGGER.trace("The program has started ");

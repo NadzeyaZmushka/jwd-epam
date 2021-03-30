@@ -1,18 +1,16 @@
 package com.epam.jwd.model;
 
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+import com.epam.jwd.exception.FigureCannotExistException;
 
 public class Line {
-    private static final Logger LOGGER = LogManager.getLogger();
     private static final String NAME = "Line";
     private Point point1;
     private Point point2;
 
-    public static Line createLine(Point a, Point b) {
+    public static Line createLine(Point a, Point b) throws FigureCannotExistException {
         Line line = null;
         if (a.equals(b)) {
-            LOGGER.error("object " + Line.class.toString() + " isn't figure " + NAME);
+            throw new FigureCannotExistException("not enough points");
         }else {
             line = new Line(a, b);
         }
@@ -38,6 +36,10 @@ public class Line {
 
     public void setPoint2(Point point2) {
         this.point2 = point2;
+    }
+
+    public static String getNAME() {
+        return NAME;
     }
 
     @Override
