@@ -1,7 +1,6 @@
 package com.epam.jwd.model;
 
 import com.epam.jwd.exception.FigureCannotExistException;
-
 import java.util.Objects;
 
 public class Line {
