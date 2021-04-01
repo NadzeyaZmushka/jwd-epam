@@ -1,7 +1,11 @@
 package com.epam.jwd.action;
 
 import com.epam.jwd.exception.FigureCannotExistException;
-import com.epam.jwd.model.*;
+import com.epam.jwd.model.Figures;
+import com.epam.jwd.model.Point;
+import com.epam.jwd.model.Line;
+import com.epam.jwd.model.Triangle;
+import com.epam.jwd.model.Square;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 

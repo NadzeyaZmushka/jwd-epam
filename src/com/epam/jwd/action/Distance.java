@@ -2,7 +2,8 @@ package com.epam.jwd.action;
 
 import com.epam.jwd.model.Point;
 
-import static java.lang.Math.*;
+import static java.lang.Math.sqrt;
+import static java.lang.Math.pow;
 
 public interface Distance {
     static double calculateDistance(Point p1, Point p2) {

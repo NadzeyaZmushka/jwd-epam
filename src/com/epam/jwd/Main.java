@@ -1,7 +1,7 @@
 package com.epam.jwd;
 
 import com.epam.jwd.action.ArrayCreator;
-import com.epam.jwd.model.*;
+import com.epam.jwd.model.Figures;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 

@@ -1,12 +1,13 @@
 package com.epam.jwd.model;
 
 import com.epam.jwd.exception.FigureCannotExistException;
+
 import java.util.Objects;
 
 public class Line {
     private static final String NAME = "Line";
-    private Point point1;
-    private Point point2;
+    private final Point point1;
+    private final Point point2;
 
     private Line(Point point1, Point point2) {
         this.point1 = point1;
@@ -17,16 +18,8 @@ public class Line {
         return point1;
     }
 
-    public void setPoint1(Point point1) {
-        this.point1 = point1;
-    }
-
     public Point getPoint2() {
         return point2;
-    }
-
-    public void setPoint2(Point point2) {
-        this.point2 = point2;
     }
 
     public static String getNAME() {
