@@ -1,20 +1,21 @@
-package com.epam.jwd.action;
+package com.epam.jwd.zmushko.action;
 
-import com.epam.jwd.exception.FigureCannotExistException;
-import com.epam.jwd.model.Figures;
-import com.epam.jwd.model.Point;
-import com.epam.jwd.model.Line;
-import com.epam.jwd.model.Triangle;
-import com.epam.jwd.model.Square;
+import com.epam.jwd.zmushko.exception.FigureCannotExistException;
+import com.epam.jwd.zmushko.model.Figure;
+import com.epam.jwd.zmushko.model.Figures;
+import com.epam.jwd.zmushko.model.Point;
+import com.epam.jwd.zmushko.model.Line;
+import com.epam.jwd.zmushko.model.Triangle;
+import com.epam.jwd.zmushko.model.Square;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-public class ArrayCreator {
+public class ArrayFactory {
     private static final Logger LOGGER = LogManager.getLogger();
 
-    public static Object[] createArray(Figures type, int size) {
-        ArrayCreator creator = new ArrayCreator();
-        Object[] array = null;
+    public static Figure[] createArray(Figures type, int size) {
+        ArrayFactory creator = new ArrayFactory();
+        Figure[] array = null;
         switch (type) {
             case POINT:
                 array = creator.createArrayOfPoints(size);
@@ -34,16 +35,16 @@ public class ArrayCreator {
         return array;
     }
 
-    private Object[] createArrayOfPoints(int size) {
-        Point[] array = new Point[size];
+    private Figure[] createArrayOfPoints(int size) {
+        Figure[] array = new Point[size];
         for (int i = 0; i < size; i++) {
             array[i] = Point.createPoint();
         }
         return array;
     }
 
-    private Object[] createArrayOfLines(int size) {
-        Line[] array = new Line[size];
+    private Figure[] createArrayOfLines(int size) {
+        Figure[] array = new Line[size];
         for (int i = 0; i < size; i++) {
             try {
                 array[i] = Line.createLine(Point.createPoint(),
@@ -55,8 +56,8 @@ public class ArrayCreator {
         return array;
     }
 
-    private Object[] createArrayOfTriangles(int size) {
-        Triangle[] array = new Triangle[size];
+    private Figure[] createArrayOfTriangles(int size) {
+        Figure[] array = new Triangle[size];
         for (int i = 0; i < size; i++) {
             try {
                 array[i] = Triangle.createTriangle(Point.createPoint(),
@@ -69,8 +70,8 @@ public class ArrayCreator {
         return array;
     }
 
-    private Object[] createArrayOfSquare(int size) {
-        Square[] array = new Square[size];
+    private Figure[] createArrayOfSquare(int size) {
+        Figure[] array = new Square[size];
         for (int i = 0; i < size; i++) {
             try {
                 array[i] = Square.createSquare(Point.createPoint(),

@@ -1,10 +1,12 @@
-package com.epam.jwd.model;
+package com.epam.jwd.zmushko.model;
 
-import com.epam.jwd.exception.FigureCannotExistException;
+import com.epam.jwd.zmushko.exception.FigureCannotExistException;
 
 import java.util.Objects;
 
-public class Line {
+import static com.epam.jwd.zmushko.validation.FigureValidator.isLine;
+
+public class Line extends Figure {
     private static final String NAME = "Line";
     private final Point point1;
     private final Point point2;
@@ -26,14 +28,14 @@ public class Line {
         return NAME;
     }
 
+    /*An exception FigureCannotExistException "not enough points" may be thrown*/
     public static Line createLine(Point a, Point b) throws FigureCannotExistException {
-        Line line;
-        if (a.equals(b)) {
-            throw new FigureCannotExistException("not enough points");
+        Line line = new Line(a, b);
+        if (!isLine(line)) {
+            throw new FigureCannotExistException();
         } else {
-            line = new Line(a, b);
+            return line;
         }
-        return line;
     }
 
     @Override

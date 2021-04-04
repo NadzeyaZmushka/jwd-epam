@@ -1,10 +1,12 @@
-package com.epam.jwd.model;
+package com.epam.jwd.zmushko.model;
 
-import com.epam.jwd.exception.FigureCannotExistException;
+import com.epam.jwd.zmushko.exception.FigureCannotExistException;
 
 import java.util.Objects;
 
-public class Triangle {
+import static com.epam.jwd.zmushko.validation.FigureValidator.isTriangle;
+
+public class Triangle extends Figure {
     private static final String NAME = "Triangle";
     private final Point point1;
     private final Point point2;
@@ -32,14 +34,15 @@ public class Triangle {
         return NAME;
     }
 
+    /*An exception FigureCannotExistException "not enough points" may be thrown
+     *An exception FigureCannotExistException "figure is not triangle" may be thrown*/
     public static Triangle createTriangle(Point a, Point b, Point c) throws FigureCannotExistException {
-        Triangle triangle;
-        if (a.equals(b) || a.equals(c) || b.equals(c)) {
-            throw new FigureCannotExistException("not enough points");
+        Triangle triangle = new Triangle(a, b, c);
+        if (!isTriangle(triangle)) {
+            throw new FigureCannotExistException();
         } else {
-            triangle = new Triangle(a, b, c);
+            return triangle;
         }
-        return triangle;
     }
 
     @Override

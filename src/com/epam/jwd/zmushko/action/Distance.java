@@ -1,6 +1,6 @@
-package com.epam.jwd.action;
+package com.epam.jwd.zmushko.action;
 
-import com.epam.jwd.model.Point;
+import com.epam.jwd.zmushko.model.Point;
 
 import static java.lang.Math.sqrt;
 import static java.lang.Math.pow;

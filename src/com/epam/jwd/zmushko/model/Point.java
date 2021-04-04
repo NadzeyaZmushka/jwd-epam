@@ -1,8 +1,11 @@
-package com.epam.jwd.model;
+package com.epam.jwd.zmushko.model;
+
+import com.epam.jwd.zmushko.action.DataReader;
 
 import java.util.Objects;
+import java.util.Random;
 
-public class Point {
+public class Point extends Figure {
     private final int x;
     private final int y;
 
@@ -20,7 +23,11 @@ public class Point {
     }
 
     public static Point createPoint() {
-        return new Point((int) (Math.random() * 10 - 5), (int) (Math.random() * 10 - 5));
+//        return new Point((int) (Math.random() * 10 - 5), (int) (Math.random() * 10 - 5));
+        DataReader coordinate = new DataReader();
+        int[] data = coordinate.getCoordinates();
+        Random random = new Random();
+        return new Point(data[random.nextInt(data.length)], data[random.nextInt(data.length)]);
     }
 
     @Override
