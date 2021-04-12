@@ -8,9 +8,14 @@ import java.util.List;
 
 public interface FigureCrud {
     Figure create(FigureType type, int points) throws FigureCannotExistException;
-    List<Figure> multiCreate(FigureType...types);
+
+    List<Figure> multiCreate(FigureType... types);
+
     boolean delete(Figure figure);
+
     Figure find(Figure figure);
+
     boolean update(Figure figure);
+
     Figure fondById(int index);
 }

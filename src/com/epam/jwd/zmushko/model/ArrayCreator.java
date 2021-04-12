@@ -1,7 +1,6 @@
 package com.epam.jwd.zmushko.model;
 
 import com.epam.jwd.zmushko.exception.FigureCannotExistException;
-import com.epam.jwd.zmushko.exception.FigureException;
 import com.epam.jwd.zmushko.factory.FigureFactory;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;

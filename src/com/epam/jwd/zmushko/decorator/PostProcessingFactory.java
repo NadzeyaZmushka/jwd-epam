@@ -10,7 +10,7 @@ public class PostProcessingFactory extends FigureFactoryDecorator {
         this.figureFactory = figureFactory;
     }
 
-    public void postProcess(Figure figure){
+    public void postProcess(Figure figure) {
         System.out.println("post process");
     }
 }

@@ -7,8 +7,9 @@ import com.epam.jwd.zmushko.model.FigureType;
 
 public abstract class FigureFactoryDecorator implements FigureFactory {
     FigureFactory figureFactory;
+
     @Override
     public Figure createFigure(FigureType type, int points) throws FigureCannotExistException {
-        return figureFactory.createFigure(type,points);
+        return figureFactory.createFigure(type, points);
     }
 }

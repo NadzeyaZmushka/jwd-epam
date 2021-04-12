@@ -1,7 +1,6 @@
 package com.epam.jwd.zmushko.service.impl;
 
 import com.epam.jwd.zmushko.exception.FigureCannotExistException;
-import com.epam.jwd.zmushko.exception.FigureException;
 import com.epam.jwd.zmushko.factory.FigureFactory;
 import com.epam.jwd.zmushko.model.Figure;
 import com.epam.jwd.zmushko.model.Triangle;
@@ -20,7 +19,7 @@ public class FigureExistencePostProcessor implements FigurePostProcessor {
 
     @Override
     public Figure process(Figure figure) throws FigureCannotExistException {
-        if (figure.getType().equals(FigureType.POINT)){
+        if (figure.getType().equals(FigureType.POINT)) {
             return figure;
         }
         if (figure.getType().equals(FigureType.LINE)) {

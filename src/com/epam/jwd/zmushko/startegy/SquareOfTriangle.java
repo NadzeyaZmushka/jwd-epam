@@ -9,6 +9,7 @@ import com.epam.jwd.zmushko.model.Triangle;
 public class SquareOfTriangle implements SquareOfFigure {
     private static final SquareOfTriangle instance = new SquareOfTriangle();
     FigureFactory factory = new SimpleFigureFactory();
+
     public SquareOfTriangle() {
     }
 
