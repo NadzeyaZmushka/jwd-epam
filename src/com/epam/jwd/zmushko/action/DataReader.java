@@ -25,11 +25,11 @@ public class DataReader {
         return data;
     }
 
-    public int[] getCoordinates() {
-        String[] str = DataReader.readCoordinates();
-        int[] coordinates = new int[str.length];
+    public double[] getCoordinates() {
+        String[] str = readCoordinates();
+        double[] coordinates = new double[str.length];
         for (int i = 0; i < str.length; i++) {
-            coordinates[i] = Integer.parseInt(str[i]);
+            coordinates[i] = Double.parseDouble(str[i]);
         }
         return coordinates;
     }

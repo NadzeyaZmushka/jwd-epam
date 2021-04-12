@@ -4,30 +4,30 @@ import com.epam.jwd.zmushko.exception.FigureCannotExistException;
 
 import java.util.Objects;
 
-import static com.epam.jwd.zmushko.validation.FigureValidator.isTriangle;
+import static com.epam.jwd.zmushko.service.FigureValidator.isTriangle;
 
 public class Triangle extends Figure {
     private static final String NAME = "Triangle";
-    private final Point point1;
-    private final Point point2;
-    private final Point point3;
+    private final Point a;
+    private final Point b;
+    private final Point c;
 
-    private Triangle(Point point1, Point point2, Point point3) {
-        this.point1 = point1;
-        this.point2 = point2;
-        this.point3 = point3;
+    private Triangle(Point a, Point b, Point c) {
+        this.a = a;
+        this.b = b;
+        this.c = c;
     }
 
-    public Point getPoint1() {
-        return point1;
+    public Point getA() {
+        return a;
     }
 
-    public Point getPoint2() {
-        return point2;
+    public Point getB() {
+        return b;
     }
 
-    public Point getPoint3() {
-        return point3;
+    public Point getC() {
+        return c;
     }
 
     public static String getNAME() {
@@ -36,7 +36,7 @@ public class Triangle extends Figure {
 
     /*An exception FigureCannotExistException "not enough points" may be thrown
      *An exception FigureCannotExistException "figure is not triangle" may be thrown*/
-    public static Triangle createTriangle(Point a, Point b, Point c) throws FigureCannotExistException {
+    static Triangle createTriangle(Point a, Point b, Point c) throws FigureCannotExistException {
         Triangle triangle = new Triangle(a, b, c);
         if (!isTriangle(triangle)) {
             throw new FigureCannotExistException();
@@ -50,22 +50,22 @@ public class Triangle extends Figure {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Triangle triangle = (Triangle) o;
-        return Objects.equals(point1, triangle.point1) &&
-                Objects.equals(point2, triangle.point2) &&
-                Objects.equals(point3, triangle.point3);
+        return Objects.equals(a, triangle.a) &&
+                Objects.equals(b, triangle.b) &&
+                Objects.equals(c, triangle.c);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(point1, point2, point3);
+        return Objects.hash(a, b, c);
     }
 
     @Override
     public String toString() {
         return "Triangle{" +
-                "point1=" + point1 +
-                ", point2=" + point2 +
-                ", point3=" + point3 +
+                "a=" + a +
+                ", b=" + b +
+                ", c=" + c +
                 '}';
     }
 }

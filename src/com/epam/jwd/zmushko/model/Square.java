@@ -4,7 +4,7 @@ import com.epam.jwd.zmushko.exception.FigureCannotExistException;
 
 import java.util.Objects;
 
-import static com.epam.jwd.zmushko.validation.FigureValidator.isSquare;
+import static com.epam.jwd.zmushko.service.FigureValidator.isSquare;
 
 public class Square extends Figure {
     private static final String NAME = "Square";
@@ -43,7 +43,7 @@ public class Square extends Figure {
 
     /*An exception FigureCannotExistException "not enough points" may be thrown
      *An exception FigureCannotExistException "figure is rectangle but not square" may be thrown*/
-    public static Square createSquare(Point a, Point b, Point c, Point d) throws FigureCannotExistException {
+    static Square createSquare(Point a, Point b, Point c, Point d) throws FigureCannotExistException {
         Square square = new Square(a, b, c, d);
         if (!isSquare(square)) {
             throw new FigureCannotExistException();
@@ -71,10 +71,10 @@ public class Square extends Figure {
     @Override
     public String toString() {
         return "Square{" +
-                "point1=" + a +
-                ", point2=" + b +
-                ", point3=" + c +
-                ", point4=" + d +
+                "a=" + a +
+                ", b=" + b +
+                ", c=" + c +
+                ", d=" + d +
                 '}';
     }
 }

@@ -6,26 +6,25 @@ import java.util.Objects;
 import java.util.Random;
 
 public class Point extends Figure {
-    private final int x;
-    private final int y;
+    private final double x;
+    private final double y;
 
-    private Point(int x, int y) {
+    private Point(double x, double y) {
         this.x = x;
         this.y = y;
     }
 
-    public int getX() {
+    public double getX() {
         return x;
     }
 
-    public int getY() {
+    public double getY() {
         return y;
     }
 
-    public static Point createPoint() {
-//        return new Point((int) (Math.random() * 10 - 5), (int) (Math.random() * 10 - 5));
+    static Point createPoint() {
         DataReader coordinate = new DataReader();
-        int[] data = coordinate.getCoordinates();
+        double[] data = coordinate.getCoordinates();
         Random random = new Random();
         return new Point(data[random.nextInt(data.length)], data[random.nextInt(data.length)]);
     }
@@ -51,4 +50,5 @@ public class Point extends Figure {
                 ", y=" + y +
                 '}';
     }
+
 }

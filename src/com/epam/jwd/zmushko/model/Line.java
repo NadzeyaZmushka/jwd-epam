@@ -4,24 +4,25 @@ import com.epam.jwd.zmushko.exception.FigureCannotExistException;
 
 import java.util.Objects;
 
-import static com.epam.jwd.zmushko.validation.FigureValidator.isLine;
+import static com.epam.jwd.zmushko.service.FigureValidator.isLine;
 
 public class Line extends Figure {
     private static final String NAME = "Line";
-    private final Point point1;
-    private final Point point2;
+    private final Point a;
+    private final Point b;
 
-    private Line(Point point1, Point point2) {
-        this.point1 = point1;
-        this.point2 = point2;
+    private Line(Point a, Point b) {
+        this.a = a;
+        this.b = b;
     }
 
-    public Point getPoint1() {
-        return point1;
+
+    public Point getA() {
+        return a;
     }
 
-    public Point getPoint2() {
-        return point2;
+    public Point getB() {
+        return b;
     }
 
     public static String getNAME() {
@@ -29,7 +30,7 @@ public class Line extends Figure {
     }
 
     /*An exception FigureCannotExistException "not enough points" may be thrown*/
-    public static Line createLine(Point a, Point b) throws FigureCannotExistException {
+    static Line createLine(Point a, Point b) throws FigureCannotExistException {
         Line line = new Line(a, b);
         if (!isLine(line)) {
             throw new FigureCannotExistException();
@@ -43,20 +44,20 @@ public class Line extends Figure {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Line line = (Line) o;
-        return Objects.equals(point1, line.point1) &&
-                Objects.equals(point2, line.point2);
+        return Objects.equals(a, line.a) &&
+                Objects.equals(b, line.b);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(point1, point2);
+        return Objects.hash(a, b);
     }
 
     @Override
     public String toString() {
         return "Line{" +
-                "point1=" + point1 +
-                ", point2=" + point2 +
+                "a=" + a +
+                ", b=" + b +
                 '}';
     }
 }

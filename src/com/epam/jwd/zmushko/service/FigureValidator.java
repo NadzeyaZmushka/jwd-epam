@@ -1,15 +1,15 @@
-package com.epam.jwd.zmushko.validation;
+package com.epam.jwd.zmushko.service;
 
 import com.epam.jwd.zmushko.exception.FigureCannotExistException;
 import com.epam.jwd.zmushko.model.Line;
 import com.epam.jwd.zmushko.model.Square;
 import com.epam.jwd.zmushko.model.Triangle;
 
-import static com.epam.jwd.zmushko.action.Distance.calculateDistance;
+import static com.epam.jwd.zmushko.startegy.Distance.side;
 
-public class FigureValidator {
+public final class FigureValidator {
     public static boolean isLine(Line l) throws FigureCannotExistException {
-        if (l.getPoint1().equals(l.getPoint2())) {
+        if (l.getA().equals(l.getB())) {
             throw new FigureCannotExistException("not enough points");
         } else {
             return true;
@@ -18,11 +18,11 @@ public class FigureValidator {
 
     /*A triangle cannot exist if three points lie on the same straight line*/
     public static boolean isTriangle(Triangle t) throws FigureCannotExistException {
-        if (t.getPoint1().equals(t.getPoint2()) || t.getPoint1().equals(t.getPoint3())
-                || t.getPoint2().equals(t.getPoint3())) {
+        if (t.getA().equals(t.getB()) || t.getA().equals(t.getC())
+                || t.getB().equals(t.getC())) {
             throw new FigureCannotExistException("not enough points");
-        } else if ((t.getPoint1().getX() == t.getPoint2().getX() && t.getPoint1().getX() == t.getPoint3().getX()) ||
-                t.getPoint1().getY() == t.getPoint2().getY() && t.getPoint1().getY() == t.getPoint3().getY()) {
+        } else if ((t.getA().getX() == t.getB().getX() && t.getA().getX() == t.getC().getX()) ||
+                t.getA().getY() == t.getB().getY() && t.getA().getY() == t.getC().getY()) {
             throw new FigureCannotExistException("figure is not triangle");
         } else {
             return true;
@@ -36,10 +36,10 @@ public class FigureValidator {
                 s.getA().equals(s.getD()) || s.getB().equals(s.getC()) ||
                 s.getB().equals(s.getD()) || s.getC().equals(s.getD())) {
             throw new FigureCannotExistException("not enough points");
-        } else if (calculateDistance(s.getA(), s.getB()) != calculateDistance(s.getB(), s.getC()) ||
-                calculateDistance(s.getC(), s.getD()) != calculateDistance(s.getD(), s.getA()) ||
-                calculateDistance(s.getB(), s.getC()) != calculateDistance(s.getD(), s.getA()) ||
-                calculateDistance(s.getA(), s.getC()) != calculateDistance(s.getB(), s.getD())) {
+        } else if (side(s.getA(), s.getB()) != side(s.getB(), s.getC()) ||
+                side(s.getC(), s.getD()) != side(s.getD(), s.getA()) ||
+                side(s.getB(), s.getC()) != side(s.getD(), s.getA()) ||
+                side(s.getA(), s.getC()) != side(s.getB(), s.getD())) {
             throw new FigureCannotExistException("figure is rectangle but not square");
         } else {
             return true;

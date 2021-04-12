@@ -1,8 +1,9 @@
 package com.epam.jwd.zmushko.model;
 
-public enum Figures {
+public enum FigureType {
     POINT,
     LINE,
     TRIANGLE,
-    SQUARE
+    SQUARE,
+    MULTI_ANGLE_FIGURE
 }
