@@ -3,7 +3,7 @@ package com.epam.jwd.zmushko.decorator;
 import com.epam.jwd.zmushko.factory.FigureFactory;
 import com.epam.jwd.zmushko.model.Figure;
 
-public class PostProcessingFactory extends FigureFactoryDecorator {
+public class PostProcessingFactory extends FigureFactoryDecorator implements FigureFactory {
     FigureFactory figureFactory;
 
     public PostProcessingFactory(FigureFactory figureFactory) {

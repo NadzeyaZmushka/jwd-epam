@@ -1,59 +1,62 @@
 package com.epam.jwd.zmushko.model;
 
+import com.epam.jwd.zmushko.startegy.MultiAngleCalculator;
+
 import java.util.Objects;
 
 public class MultiAngleFigure extends Figure {
-    private final Point p1;
-    private final Point p2;
-    private final Point p3;
-    private final Point p4;
+    private static final String NAME = "MultiAngle";
+    private Point p1;
+    private Point p2;
+    private Point p3;
+    private Point p4;
     private Point p5;
     private Point p6;
 
-    private MultiAngleFigure(Point p1, Point p2, Point p3, Point p4) {
-        this.p1 = p1;
-        this.p2 = p2;
-        this.p3 = p3;
-        this.p4 = p4;
+    private MultiAngleFigure() {
+        name = NAME;
+        type = FigureType.MULTI_ANGLE_FIGURE;
+        figureCalculator = MultiAngleCalculator.INSTANCE;
     }
 
-    private MultiAngleFigure(Point p1, Point p2, Point p3, Point p4, Point p5) {
-        this.p1 = p1;
-        this.p2 = p2;
-        this.p3 = p3;
-        this.p4 = p4;
-        this.p5 = p5;
-    }
+    public static class Builder {
+        private final MultiAngleFigure multiAngleFigure;
 
-    private MultiAngleFigure(Point p1, Point p2, Point p3, Point p4, Point p5, Point p6) {
-        this.p1 = p1;
-        this.p2 = p2;
-        this.p3 = p3;
-        this.p4 = p4;
-        this.p5 = p5;
-        this.p6 = p6;
-    }
-
-    static MultiAngleFigure createFigure(int sides) {
-        MultiAngleFigure figure = null;
-        switch (sides) {
-            case 4:
-                figure = new MultiAngleFigure(Point.createPoint(), Point.createPoint(),
-                        Point.createPoint(), Point.createPoint());
-                break;
-            case 5:
-                figure = new MultiAngleFigure(Point.createPoint(), Point.createPoint(),
-                        Point.createPoint(), Point.createPoint(), Point.createPoint());
-                break;
-            case 6:
-                figure = new MultiAngleFigure(Point.createPoint(), Point.createPoint(),
-                        Point.createPoint(), Point.createPoint(), Point.createPoint(), Point.createPoint());
-                break;
-            default:
-                throw new IllegalArgumentException();
-
+        public Builder() {
+            multiAngleFigure = new MultiAngleFigure();
         }
-        return figure;
+
+
+        public Builder withFourAngles(Point[] points) {
+            multiAngleFigure.p1 = points[0];
+            multiAngleFigure.p2 = points[1];
+            multiAngleFigure.p3 = points[2];
+            multiAngleFigure.p4 = points[3];
+            return this;
+        }
+
+        public Builder withFiveAngles(Point[] points) {
+            multiAngleFigure.p1 = points[0];
+            multiAngleFigure.p2 = points[1];
+            multiAngleFigure.p3 = points[2];
+            multiAngleFigure.p4 = points[3];
+            multiAngleFigure.p5 = points[4];
+            return this;
+        }
+
+        public Builder withSixAngles(Point[] points) {
+            multiAngleFigure.p1 = points[0];
+            multiAngleFigure.p2 = points[1];
+            multiAngleFigure.p3 = points[2];
+            multiAngleFigure.p4 = points[3];
+            multiAngleFigure.p5 = points[4];
+            multiAngleFigure.p6 = points[5];
+            return this;
+        }
+
+        public MultiAngleFigure build() {
+            return multiAngleFigure;
+        }
     }
 
     public Point getP1() {

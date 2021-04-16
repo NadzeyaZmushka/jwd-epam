@@ -1,48 +1,53 @@
 package com.epam.jwd.zmushko.model;
 
 import com.epam.jwd.zmushko.exception.FigureCannotExistException;
+import com.epam.jwd.zmushko.exception.FigureException;
 import com.epam.jwd.zmushko.factory.FigureFactory;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+import com.epam.jwd.zmushko.service.FigurePostProcessor;
+import com.epam.jwd.zmushko.service.impl.FigureExistencePostProcessor;
+import com.epam.jwd.zmushko.validation.CheckDataFromFile;
 
 public class SimpleFigureFactory implements FigureFactory {
-    static final Logger LOGGER = LogManager.getLogger(SimpleFigureFactory.class);
+    private static SimpleFigureFactory instance;
 
-    public Figure createFigure(FigureType type, int points) throws FigureCannotExistException {
-        Figure figure = null;
-        switch (type) {
-            case POINT:
-                figure = Point.createPoint();
-                break;
-            case LINE:
-                figure = Line.createLine(Point.createPoint(), Point.createPoint());
-                break;
-            case TRIANGLE:
-                figure = Triangle.createTriangle(Point.createPoint(), Point.createPoint(),
-                        Point.createPoint());
-                break;
-            case SQUARE:
-                figure = Square.createSquare(Point.createPoint(), Point.createPoint(),
-                        Point.createPoint(), Point.createPoint());
-                break;
-            case MULTI_ANGLE_FIGURE:
-                switch (points) {
-                    case 4:
-                        figure = MultiAngleFigure.createFigure(4);
-                        break;
-                    case 5:
-                        figure = MultiAngleFigure.createFigure(5);
-                        break;
-                    case 6:
-                        figure = MultiAngleFigure.createFigure(6);
-                        break;
-                    default:
-                        LOGGER.error("other figure");
-                }
-                break;
-            default:
-                throw new FigureCannotExistException();
+    private SimpleFigureFactory() {
+    }
+
+    public static SimpleFigureFactory getInstance() {
+        if (instance == null) {
+            instance = new SimpleFigureFactory();
         }
-        return figure;
+        return instance;
+    }
+
+    public Figure createFigure(FigureType type, Point[] figureConstituents) throws FigureException {
+        Figure figure = null;
+        FigurePostProcessor processor = new FigureExistencePostProcessor();
+        CheckDataFromFile data = new CheckDataFromFile();
+        if (data.isValidData()) {
+            switch (type) {
+                case LINE:
+                    figure = Line.createLine(figureConstituents);
+                    break;
+                case TRIANGLE:
+                    figure = Triangle.createTriangle(figureConstituents);
+                    break;
+                case SQUARE:
+                    figure = Square.createSquare(figureConstituents);
+                    break;
+                case MULTI_ANGLE_FIGURE:
+                    if (figureConstituents.length == 4) {
+                        figure = new MultiAngleFigure.Builder().withFourAngles(figureConstituents).build();
+                    } else if (figureConstituents.length == 5) {
+                        figure = new MultiAngleFigure.Builder().withFiveAngles(figureConstituents).build();
+                    } else if (figureConstituents.length == 6) {
+                        figure = new MultiAngleFigure.Builder().withSixAngles(figureConstituents).build();
+                    }
+                    break;
+                default:
+                    throw new FigureCannotExistException("unknown type");
+            }
+        }
+        return processor.process(figure);
     }
 }

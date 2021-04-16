@@ -1,21 +1,26 @@
 package com.epam.jwd.zmushko.service;
 
 import com.epam.jwd.zmushko.exception.FigureCannotExistException;
+import com.epam.jwd.zmushko.exception.FigureException;
 import com.epam.jwd.zmushko.model.Figure;
 import com.epam.jwd.zmushko.model.FigureType;
+import com.epam.jwd.zmushko.model.Point;
 
 import java.util.List;
+import java.util.Optional;
 
-public interface FigureCrud {
-    Figure create(FigureType type, int points) throws FigureCannotExistException;
+public interface FigureCrud extends Iterable<Figure> {
+    Figure create(FigureType type, Point[] figureConstituents) throws FigureException;
 
-    List<Figure> multiCreate(FigureType... types);
+    List<Figure> multiCreate(List<Point[]> figureConstituents, List<FigureType> types) throws FigureException;
 
     boolean delete(Figure figure);
 
-    Figure find(Figure figure);
+    int find(Figure figure);
 
-    boolean update(Figure figure);
+    Figure update(int index, Figure figure);
 
-    Figure fondById(int index);
+    Optional<Figure> findById(int index);
+
+    List<Figure> findByCriteria(Specification specification);
 }

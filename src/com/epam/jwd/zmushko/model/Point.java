@@ -1,11 +1,9 @@
 package com.epam.jwd.zmushko.model;
 
-import com.epam.jwd.zmushko.action.DataReader;
-
 import java.util.Objects;
-import java.util.Random;
 
-public class Point extends Figure {
+public class Point {
+    private static final String NAME = "Point";
     private final double x;
     private final double y;
 
@@ -22,25 +20,23 @@ public class Point extends Figure {
         return y;
     }
 
-    static Point createPoint() {
-        DataReader coordinate = new DataReader();
-        double[] data = coordinate.getCoordinates();
-        Random random = new Random();
-        return new Point(data[random.nextInt(data.length)], data[random.nextInt(data.length)]);
+    public static Point createPoint(double a, double b) {
+        return new Point(a, b);
     }
 
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
+        if (!super.equals(o)) return false;
         Point point = (Point) o;
-        return x == point.x &&
-                y == point.y;
+        return Double.compare(point.x, x) == 0 &&
+                Double.compare(point.y, y) == 0;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(x, y);
+        return Objects.hash(super.hashCode(), x, y);
     }
 
     @Override
@@ -50,5 +46,4 @@ public class Point extends Figure {
                 ", y=" + y +
                 '}';
     }
-
 }

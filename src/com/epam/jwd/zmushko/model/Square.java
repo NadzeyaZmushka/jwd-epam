@@ -1,24 +1,24 @@
 package com.epam.jwd.zmushko.model;
 
-import com.epam.jwd.zmushko.exception.FigureCannotExistException;
+import com.epam.jwd.zmushko.startegy.SquareCalculator;
 
 import java.util.Objects;
 
-import static com.epam.jwd.zmushko.service.FigureValidator.isSquare;
-
 public class Square extends Figure {
     private static final String NAME = "Square";
-
     private final Point a;
     private final Point b;
     private final Point c;
     private final Point d;
 
-    private Square(Point point1, Point point2, Point point3, Point point4) {
-        this.a = point1;
-        this.b = point2;
-        this.c = point3;
-        this.d = point4;
+    private Square(Point[] points) {
+        name = NAME;
+        type = FigureType.SQUARE;
+        figureCalculator = SquareCalculator.getInstance();
+        this.a = points[0];
+        this.b = points[1];
+        this.c = points[2];
+        this.d = points[3];
     }
 
     public Point getA() {
@@ -37,19 +37,8 @@ public class Square extends Figure {
         return d;
     }
 
-    public static String getNAME() {
-        return NAME;
-    }
-
-    /*An exception FigureCannotExistException "not enough points" may be thrown
-     *An exception FigureCannotExistException "figure is rectangle but not square" may be thrown*/
-    static Square createSquare(Point a, Point b, Point c, Point d) throws FigureCannotExistException {
-        Square square = new Square(a, b, c, d);
-        if (!isSquare(square)) {
-            throw new FigureCannotExistException();
-        } else {
-            return square;
-        }
+    static Square createSquare(Point[] points) {
+        return new Square(points);
     }
 
     @Override
