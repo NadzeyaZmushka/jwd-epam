@@ -7,16 +7,17 @@ public class TriangleCalculator implements FigureCalculator {
 
     private static TriangleCalculator instance;
 
-    private TriangleCalculator(){
+    private TriangleCalculator() {
 
     }
 
-    public static TriangleCalculator getInstance(){
-        if (instance == null){
+    public static TriangleCalculator getInstance() {
+        if (instance == null) {
             instance = new TriangleCalculator();
         }
         return instance;
     }
+
     @Override
     public double calculatePerimeter(Figure figure) {
         Triangle triangle = (Triangle) figure;

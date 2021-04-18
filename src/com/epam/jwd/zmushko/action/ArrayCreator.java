@@ -6,7 +6,6 @@ import com.epam.jwd.zmushko.factory.FigureFactory;
 import com.epam.jwd.zmushko.model.Figure;
 import com.epam.jwd.zmushko.model.FigureType;
 import com.epam.jwd.zmushko.model.Point;
-import com.epam.jwd.zmushko.model.SimpleFigureFactory;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -15,8 +14,6 @@ import java.util.List;
 import java.util.Random;
 
 public class ArrayCreator {
-
-    private static final FigureFactory factory = SimpleFigureFactory.getInstance();
     public static final Logger LOGGER = LogManager.getLogger(ArrayCreator.class);
 
     private ArrayCreator() {
@@ -33,7 +30,7 @@ public class ArrayCreator {
         return points;
     }
 
-    public static List<Figure> createListOfFigure(FigureType type, Point[] points, int size) {
+    public static List<Figure> createListOfFigure(FigureFactory factory, FigureType type, Point[] points, int size) {
         List<Figure> list = new ArrayList<>();
         for (int i = 0; i < size; i++) {
             try {

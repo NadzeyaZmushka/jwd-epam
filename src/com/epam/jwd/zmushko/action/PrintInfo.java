@@ -13,7 +13,7 @@ public class PrintInfo {
     private PrintInfo() {
     }
 
-    public static void printInfoAboutFigure(List<? extends Figure> figures) {
+    public static void printInfoAboutFigure(List<Figure> figures) {
         for (Figure figure : figures) {
             if (figure != null) {
                 LOGGER.info(figure);

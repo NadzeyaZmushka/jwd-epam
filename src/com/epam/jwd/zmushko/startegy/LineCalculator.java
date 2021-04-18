@@ -2,7 +2,7 @@ package com.epam.jwd.zmushko.startegy;
 
 import com.epam.jwd.zmushko.model.Figure;
 
-public enum  LineCalculator implements FigureCalculator {
+public enum LineCalculator implements FigureCalculator {
     INSTANCE;
 
     @Override

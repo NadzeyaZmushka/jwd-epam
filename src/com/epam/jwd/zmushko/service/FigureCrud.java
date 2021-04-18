@@ -1,6 +1,5 @@
 package com.epam.jwd.zmushko.service;
 
-import com.epam.jwd.zmushko.exception.FigureCannotExistException;
 import com.epam.jwd.zmushko.exception.FigureException;
 import com.epam.jwd.zmushko.model.Figure;
 import com.epam.jwd.zmushko.model.FigureType;
@@ -18,7 +17,7 @@ public interface FigureCrud extends Iterable<Figure> {
 
     int find(Figure figure);
 
-    Figure update(int index, Figure figure);
+    List<Figure> update(int index, Figure figure);
 
     Optional<Figure> findById(int index);
 

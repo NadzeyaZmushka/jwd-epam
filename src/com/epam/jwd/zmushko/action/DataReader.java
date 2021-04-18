@@ -11,7 +11,7 @@ public class DataReader {
         String filePath = "src/com/epam/jwd/zmushko/resource/point.txt";
         File file = new File(filePath);
         DataInputStream fin;
-        String[] data = new String[8];
+        String[] data = null;
         StringBuilder s = new StringBuilder();
         try {
             fin = new DataInputStream(new FileInputStream(file));

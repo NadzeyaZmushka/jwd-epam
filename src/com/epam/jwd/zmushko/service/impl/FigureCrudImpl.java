@@ -35,10 +35,11 @@ public class FigureCrudImpl implements FigureCrud {
         data.add(figure);
         return figure;
     }
-//
+
+    //
     @Override
     public List<Figure> multiCreate(List<Point[]> figureConstituents, List<FigureType> types) throws FigureException {
-        if (figureConstituents.size() != types.size()){
+        if (figureConstituents.size() != types.size()) {
             throw new FigureCannotExistException("Invalid parameters");
         }
         List<Figure> listResult = new ArrayList<>();
@@ -47,7 +48,6 @@ public class FigureCrudImpl implements FigureCrud {
             Figure figure = factory.createFigure(type, iterator.next());
             listResult.add(figure);
         }
-        data.addAll(listResult);
         return listResult;
     }
 
@@ -62,8 +62,9 @@ public class FigureCrudImpl implements FigureCrud {
     }
 
     @Override
-    public Figure update(int index, Figure figure) {
-        return data.set(index, figure);
+    public List<Figure> update(int index, Figure figure) {
+        data.set(index, figure);
+        return data;
     }
 
     @Override
