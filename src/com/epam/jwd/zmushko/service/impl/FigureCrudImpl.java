@@ -12,7 +12,6 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Optional;
@@ -20,12 +19,12 @@ import java.util.stream.Collectors;
 
 public class FigureCrudImpl implements FigureCrud {
 
-    public static final Logger LOGGER = LogManager.getLogger();
+    //    public static final Logger LOGGER = LogManager.getLogger();
     private final List<Figure> data;
     FigureFactory factory;
 
-    public FigureCrudImpl(Collection<Figure> data, FigureFactory factory) {
-        this.data = new ArrayList<>(data);
+    public FigureCrudImpl(List<Figure> data, FigureFactory factory) {
+        this.data = data;
         this.factory = factory;
     }
 
@@ -36,7 +35,6 @@ public class FigureCrudImpl implements FigureCrud {
         return figure;
     }
 
-    //
     @Override
     public List<Figure> multiCreate(List<Point[]> figureConstituents, List<FigureType> types) throws FigureException {
         if (figureConstituents.size() != types.size()) {
@@ -68,13 +66,16 @@ public class FigureCrudImpl implements FigureCrud {
     }
 
     @Override
-    public Optional<Figure> findById(int index) {
-        return Optional.of(data.get(index));
+    public Optional<Figure> findById(long id) {
+        List<Figure> resultList = data.stream().filter(o -> id == o.getId()).collect(Collectors.toList());
+        return resultList.size() != 0 ? Optional.of(resultList.get(0)) : Optional.empty();
     }
 
     @Override
-    public List<Figure> findByCriteria(Specification specification) {
-        return data.stream().filter(specification::specify).collect(Collectors.toList());
+    public Optional<Figure> findByCriteria(Specification specification) {
+//        List<Figure> resultList = data.stream().filter(specification::specify).collect(Collectors.toList());
+//        return resultList.size() != 0 ? Optional.of(resultList.get(0)) : Optional.empty();
+        return data.stream().filter(specification::specify).findAny();
     }
 
     @Override

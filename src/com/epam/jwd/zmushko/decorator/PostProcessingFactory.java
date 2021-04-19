@@ -27,7 +27,7 @@ public class PostProcessingFactory extends FigureFactoryDecorator {
         Figure figure = figureFactory.createFigure(type, figureConstituents);
         LOGGER.info("Post process: ");
         figure = postProcessor.process(figure);
-        LOGGER.info("Figure " + Figure.getName() + " was created");
+        LOGGER.info("Figure " + Figure.getName() + " was created with ID: " + figure.getId());
         return figure;
     }
 }

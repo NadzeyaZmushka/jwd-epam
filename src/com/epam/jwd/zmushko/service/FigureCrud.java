@@ -19,7 +19,7 @@ public interface FigureCrud extends Iterable<Figure> {
 
     List<Figure> update(int index, Figure figure);
 
-    Optional<Figure> findById(int index);
+    Optional<Figure> findById(long id);
 
-    List<Figure> findByCriteria(Specification specification);
+    Optional<Figure> findByCriteria(Specification specification);
 }

@@ -1,20 +1,30 @@
 package com.epam.jwd.zmushko.model;
 
+import com.epam.jwd.zmushko.action.IdGenerator;
 import com.epam.jwd.zmushko.startegy.FigureCalculator;
 
 import java.util.Objects;
 
 public abstract class Figure {
     static String name;
+    private final long id;
     FigureType type;
     FigureCalculator figureCalculator;
 
-    public FigureCalculator getFigureCalculator() {
-        return figureCalculator;
+    public Figure() {
+        this.id = IdGenerator.getId();
+    }
+
+    public long getId() {
+        return id;
     }
 
     public static String getName() {
         return name;
+    }
+
+    public FigureCalculator getFigureCalculator() {
+        return figureCalculator;
     }
 
     public FigureType getType() {
