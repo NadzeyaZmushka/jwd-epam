@@ -6,8 +6,9 @@ import com.epam.jwd.zmushko.startegy.FigureCalculator;
 import java.util.Objects;
 
 public abstract class Figure {
-    static String name;
-    private final long id;
+
+    String name;
+    long id;
     FigureType type;
     FigureCalculator figureCalculator;
 
@@ -15,20 +16,20 @@ public abstract class Figure {
         this.id = IdGenerator.getId();
     }
 
+    public String getName() {
+        return name;
+    }
+
     public long getId() {
         return id;
     }
 
-    public static String getName() {
-        return name;
+    public FigureType getType() {
+        return type;
     }
 
     public FigureCalculator getFigureCalculator() {
         return figureCalculator;
-    }
-
-    public FigureType getType() {
-        return type;
     }
 
     @Override

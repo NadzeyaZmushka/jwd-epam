@@ -1,16 +1,16 @@
 package com.epam.jwd.zmushko.model;
 
+import com.epam.jwd.zmushko.exception.FigureCannotExistException;
 import com.epam.jwd.zmushko.startegy.LineCalculator;
 
 import java.util.Objects;
 
 public class Line extends Figure {
-    private static final String NAME = "Line";
     private final Point a;
     private final Point b;
 
-    public Line(Point[] points) {
-        name = NAME;
+    private Line(Point[] points) {
+        name = "Line";
         type = FigureType.LINE;
         figureCalculator = LineCalculator.INSTANCE;
         this.a = points[0];
@@ -25,7 +25,10 @@ public class Line extends Figure {
         return b;
     }
 
-    static Line createLine(Point[] points) {
+    static Line create(Point[] points) throws FigureCannotExistException {
+        if (points.length < 2) {
+            throw new FigureCannotExistException("Not enough points");
+        }
         return new Line(points);
     }
 

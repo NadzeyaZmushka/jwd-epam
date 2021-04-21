@@ -1,18 +1,18 @@
 package com.epam.jwd.zmushko.model;
 
+import com.epam.jwd.zmushko.exception.FigureCannotExistException;
 import com.epam.jwd.zmushko.startegy.TriangleCalculator;
 
 import java.util.Objects;
 
 public class Triangle extends Figure {
-    private static final String NAME = "Triangle";
     private final Point a;
     private final Point b;
     private final Point c;
 
 
     private Triangle(Point[] points) {
-        name = NAME;
+        name = "Triangle";
         type = FigureType.TRIANGLE;
         figureCalculator = TriangleCalculator.getInstance();
         this.a = points[0];
@@ -32,7 +32,10 @@ public class Triangle extends Figure {
         return c;
     }
 
-    static Triangle createTriangle(Point[] points) {
+    static Triangle create(Point[] points) throws FigureCannotExistException {
+        if (points.length < 3) {
+            throw new FigureCannotExistException("Not enough points");
+        }
         return new Triangle(points);
     }
 

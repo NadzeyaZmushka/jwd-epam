@@ -1,11 +1,12 @@
 package com.epam.jwd.zmushko.decorator;
 
+import com.epam.jwd.zmushko.exception.FigureCannotExistException;
 import com.epam.jwd.zmushko.exception.FigureException;
 import com.epam.jwd.zmushko.factory.FigureFactory;
 import com.epam.jwd.zmushko.model.Figure;
 import com.epam.jwd.zmushko.model.FigureType;
 import com.epam.jwd.zmushko.model.Point;
-import com.epam.jwd.zmushko.validation.CheckDataFromFile;
+import com.epam.jwd.zmushko.validation.DataValidator;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -14,7 +15,7 @@ public class PreProcessingFactory extends FigureFactoryDecorator {
 
     private final FigureFactory figureFactory;
 
-    private final CheckDataFromFile checkData = new CheckDataFromFile();
+    private final DataValidator checkData = new DataValidator();
 
     public PreProcessingFactory(FigureFactory figureFactory) {
         this.figureFactory = figureFactory;
@@ -22,11 +23,14 @@ public class PreProcessingFactory extends FigureFactoryDecorator {
 
     @Override
     public Figure createFigure(FigureType type, Point[] figureConstituents) throws FigureException {
+        Figure figure;
         LOGGER.info("Pre process: ");
-        if (!checkData.isValidData()) {
-            throw new FigureException("Invalid data");
+        if (checkData.isValidDataFromFile()) {
+            LOGGER.info("Data is valid");
+            figure = figureFactory.createFigure(type, figureConstituents);
+        } else {
+            throw new FigureCannotExistException("Invalid data");
         }
-        LOGGER.info("Data is valid");
-        return figureFactory.createFigure(type, figureConstituents);
+        return figure;
     }
 }

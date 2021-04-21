@@ -5,6 +5,7 @@ import com.epam.jwd.zmushko.model.Point;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import java.util.Collection;
 import java.util.List;
 
 public class PrintInfo {
@@ -13,7 +14,7 @@ public class PrintInfo {
     private PrintInfo() {
     }
 
-    public static void printInfoAboutFigure(List<Figure> figures) {
+    public static void printInfoAboutFigure(Collection<Figure> figures) {
         for (Figure figure : figures) {
             if (figure != null) {
                 LOGGER.info(figure);

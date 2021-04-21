@@ -26,21 +26,21 @@ public class SimpleFigureFactory implements FigureFactory {
         Figure figure = null;
         switch (type) {
             case LINE:
-                figure = Line.createLine(figureConstituents);
+                figure = Line.create(figureConstituents);
                 break;
             case TRIANGLE:
-                figure = Triangle.createTriangle(figureConstituents);
+                figure = Triangle.create(figureConstituents);
                 break;
             case SQUARE:
-                figure = Square.createSquare(figureConstituents);
+                figure = Square.create(figureConstituents);
                 break;
             case MULTI_ANGLE_FIGURE:
                 if (figureConstituents.length == 4) {
-                    figure = new MultiAngleFigure.Builder().withFourAngles(figureConstituents).build();
+                    figure = new MultiAngleFigure.Builder().withFourAngles(figureConstituents).build(figureConstituents);
                 } else if (figureConstituents.length == 5) {
-                    figure = new MultiAngleFigure.Builder().withFiveAngles(figureConstituents).build();
+                    figure = new MultiAngleFigure.Builder().withFiveAngles(figureConstituents).build(figureConstituents);
                 } else if (figureConstituents.length == 6) {
-                    figure = new MultiAngleFigure.Builder().withSixAngles(figureConstituents).build();
+                    figure = new MultiAngleFigure.Builder().withSixAngles(figureConstituents).build(figureConstituents);
                 }
                 break;
             default:

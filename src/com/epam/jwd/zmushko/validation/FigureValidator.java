@@ -8,6 +8,7 @@ import com.epam.jwd.zmushko.model.Triangle;
 import com.epam.jwd.zmushko.startegy.FigureCalculator;
 
 public class FigureValidator {
+
     public static boolean isLine(Figure figure) throws FigureCannotExistException {
         Line l = (Line) figure;
         if (l.getA().equals(l.getB())) {
@@ -52,6 +53,6 @@ public class FigureValidator {
 
     public static boolean isMultiAngle(Figure figure) throws FigureCannotExistException {
         ///
-        return false;
+        return true;
     }
 }
