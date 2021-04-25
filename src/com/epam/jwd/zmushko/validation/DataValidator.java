@@ -1,14 +1,13 @@
 package com.epam.jwd.zmushko.validation;
 
-import com.epam.jwd.zmushko.action.DataReader;
 import com.epam.jwd.zmushko.exception.FigureCannotExistException;
-import com.epam.jwd.zmushko.model.Point;
+import com.epam.jwd.zmushko.util.DataReader;
 
 public class DataValidator {
 
     public boolean isValidDataFromFile() throws FigureCannotExistException {
         boolean result = false;
-        for (Double data : DataReader.readCoordinatesToDoubleArray()) {
+        for (Double data : DataReader.mapCorrdinatesToDouble()) {
             if (data != null) {
                 result = true;
             } else {
@@ -17,4 +16,5 @@ public class DataValidator {
         }
         return result;
     }
+
 }

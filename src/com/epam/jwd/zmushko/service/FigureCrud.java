@@ -11,7 +11,7 @@ import java.util.Optional;
 public interface FigureCrud extends Iterable<Figure> {
     Figure create(FigureType type, Point[] figureConstituents) throws FigureException;
 
-    List<Figure> multiCreate(List<Point[]> figureConstituents, List<FigureType> types) throws FigureException;
+    List<Figure> multiCreate(FigureType type, Point[] points, int count) throws FigureException;
 
     boolean delete(Figure figure);
 

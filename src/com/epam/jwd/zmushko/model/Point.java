@@ -3,7 +3,7 @@ package com.epam.jwd.zmushko.model;
 import java.util.Objects;
 
 public class Point {
-    private static final String NAME = "Point";
+
     private final double x;
     private final double y;
 
@@ -28,7 +28,6 @@ public class Point {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        if (!super.equals(o)) return false;
         Point point = (Point) o;
         return Double.compare(point.x, x) == 0 &&
                 Double.compare(point.y, y) == 0;
@@ -36,7 +35,7 @@ public class Point {
 
     @Override
     public int hashCode() {
-        return Objects.hash(super.hashCode(), x, y);
+        return Objects.hash(x, y);
     }
 
     @Override
@@ -46,4 +45,5 @@ public class Point {
                 ", y=" + y +
                 '}';
     }
+
 }

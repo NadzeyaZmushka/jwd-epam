@@ -1,11 +1,12 @@
 package com.epam.jwd.zmushko.model;
 
 import com.epam.jwd.zmushko.exception.FigureCannotExistException;
-import com.epam.jwd.zmushko.startegy.MultiAngleCalculator;
+import com.epam.jwd.zmushko.startegy.MultiAngleCalculatorStrategy;
 
 import java.util.Objects;
 
 public class MultiAngleFigure extends Figure {
+
     private Point p1;
     private Point p2;
     private Point p3;
@@ -15,8 +16,12 @@ public class MultiAngleFigure extends Figure {
 
     private MultiAngleFigure() {
         name = "MultiAngle";
-        type = FigureType.MULTI_ANGLE_FIGURE;
-        figureCalculator = MultiAngleCalculator.INSTANCE;
+        figureCalculator = MultiAngleCalculatorStrategy.INSTANCE;
+    }
+
+    @Override
+    public boolean isValid() throws FigureCannotExistException {
+        return true;
     }
 
     public static class Builder {
@@ -25,7 +30,6 @@ public class MultiAngleFigure extends Figure {
         public Builder() {
             multiAngleFigure = new MultiAngleFigure();
         }
-
 
         public Builder withFourAngles(Point[] points) {
             multiAngleFigure.p1 = points[0];
@@ -115,4 +119,5 @@ public class MultiAngleFigure extends Figure {
                 ", p6=" + p6 +
                 '}';
     }
+
 }

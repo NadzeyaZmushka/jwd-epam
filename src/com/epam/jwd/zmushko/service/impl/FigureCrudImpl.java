@@ -1,6 +1,5 @@
 package com.epam.jwd.zmushko.service.impl;
 
-import com.epam.jwd.zmushko.exception.FigureCannotExistException;
 import com.epam.jwd.zmushko.exception.FigureException;
 import com.epam.jwd.zmushko.factory.FigureFactory;
 import com.epam.jwd.zmushko.model.Figure;
@@ -8,8 +7,6 @@ import com.epam.jwd.zmushko.model.FigureType;
 import com.epam.jwd.zmushko.model.Point;
 import com.epam.jwd.zmushko.service.FigureCrud;
 import com.epam.jwd.zmushko.service.Specification;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
 
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -19,7 +16,6 @@ import java.util.stream.Collectors;
 
 public class FigureCrudImpl implements FigureCrud {
 
-    //    public static final Logger LOGGER = LogManager.getLogger();
     private final List<Figure> data;
     FigureFactory factory;
 
@@ -29,24 +25,19 @@ public class FigureCrudImpl implements FigureCrud {
     }
 
     @Override
-    public Figure create(FigureType type, Point[] figureConstituents) throws FigureException {
-        Figure figure = factory.createFigure(type, figureConstituents);
+    public Figure create(FigureType type, Point[] points) throws FigureException {
+        Figure figure = factory.createFigure(type, points);
         data.add(figure);
         return figure;
     }
 
     @Override
-    public List<Figure> multiCreate(List<Point[]> figureConstituents, List<FigureType> types) throws FigureException {
-        if (figureConstituents.size() != types.size()) {
-            throw new FigureCannotExistException("Invalid parameters");
+    public List<Figure> multiCreate(FigureType type, Point[] points, int count) throws FigureException {
+        List<Figure> resultList = new ArrayList<>();
+        for (int i = 0; i < count; i++) {
+            resultList.add(create(type, points));
         }
-        List<Figure> listResult = new ArrayList<>();
-        Iterator<Point[]> iterator = figureConstituents.iterator();
-        for (FigureType type : types) {
-            Figure figure = factory.createFigure(type, iterator.next());
-            listResult.add(figure);
-        }
-        return listResult;
+        return resultList;
     }
 
     @Override
@@ -73,8 +64,6 @@ public class FigureCrudImpl implements FigureCrud {
 
     @Override
     public Optional<Figure> findByCriteria(Specification specification) {
-//        List<Figure> resultList = data.stream().filter(specification::specify).collect(Collectors.toList());
-//        return resultList.size() != 0 ? Optional.of(resultList.get(0)) : Optional.empty();
         return data.stream().filter(specification::specify).findAny();
     }
 
@@ -82,4 +71,5 @@ public class FigureCrudImpl implements FigureCrud {
     public Iterator<Figure> iterator() {
         return data.iterator();
     }
+
 }

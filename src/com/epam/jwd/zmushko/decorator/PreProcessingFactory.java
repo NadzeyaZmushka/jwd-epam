@@ -11,6 +11,7 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 public class PreProcessingFactory extends FigureFactoryDecorator {
+
     public static final Logger LOGGER = LogManager.getLogger();
 
     private final FigureFactory figureFactory;
@@ -24,7 +25,9 @@ public class PreProcessingFactory extends FigureFactoryDecorator {
     @Override
     public Figure createFigure(FigureType type, Point[] figureConstituents) throws FigureException {
         Figure figure;
+
         LOGGER.info("Pre process: ");
+
         if (checkData.isValidDataFromFile()) {
             LOGGER.info("Data is valid");
             figure = figureFactory.createFigure(type, figureConstituents);

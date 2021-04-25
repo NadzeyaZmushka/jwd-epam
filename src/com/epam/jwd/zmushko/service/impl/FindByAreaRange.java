@@ -2,7 +2,7 @@ package com.epam.jwd.zmushko.service.impl;
 
 import com.epam.jwd.zmushko.model.Figure;
 import com.epam.jwd.zmushko.service.Specification;
-import com.epam.jwd.zmushko.startegy.FigureCalculator;
+import com.epam.jwd.zmushko.startegy.FigureCalculatorStrategy;
 
 public class FindByAreaRange implements Specification {
     private final double minArea;
@@ -15,8 +15,9 @@ public class FindByAreaRange implements Specification {
 
     @Override
     public boolean specify(Figure figure) {
-        FigureCalculator calculator = figure.getFigureCalculator();
+        FigureCalculatorStrategy calculator = figure.getFigureCalculator();
         double area = calculator.calculateArea(figure);
         return minArea < area && area < maxArea;
     }
+
 }

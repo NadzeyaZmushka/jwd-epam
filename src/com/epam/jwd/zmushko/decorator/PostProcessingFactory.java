@@ -1,6 +1,5 @@
 package com.epam.jwd.zmushko.decorator;
 
-import com.epam.jwd.zmushko.exception.FigureCannotExistException;
 import com.epam.jwd.zmushko.exception.FigureException;
 import com.epam.jwd.zmushko.factory.FigureFactory;
 import com.epam.jwd.zmushko.model.Figure;
@@ -26,11 +25,16 @@ public class PostProcessingFactory extends FigureFactoryDecorator {
     @Override
     public Figure createFigure(FigureType type, Point[] figureConstituents) throws FigureException {
         Figure figure = postProcessor.process(figureFactory.createFigure(type, figureConstituents));
+
         LOGGER.info("Post process: ");
+
         if (figure != null) {
             LOGGER.info("Figure " + figure.getName() + " was created with ID: " + figure.getId());
+        } else {
+            LOGGER.error("Invalid figure");
         }
         return figure;
     }
+
 }
 

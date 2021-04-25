@@ -3,15 +3,16 @@ package com.epam.jwd.zmushko.startegy;
 import com.epam.jwd.zmushko.model.Figure;
 import com.epam.jwd.zmushko.model.Square;
 
-public class SquareCalculator implements FigureCalculator {
-    private static SquareCalculator instance;
+public class SquareCalculatorStrategy implements FigureCalculatorStrategy {
 
-    private SquareCalculator() {
+    private static SquareCalculatorStrategy instance;
+
+    private SquareCalculatorStrategy() {
     }
 
-    public static SquareCalculator getInstance() {
+    public static SquareCalculatorStrategy getInstance() {
         if (instance == null) {
-            instance = new SquareCalculator();
+            instance = new SquareCalculatorStrategy();
         }
         return instance;
     }
@@ -30,4 +31,5 @@ public class SquareCalculator implements FigureCalculator {
         double sideB = side(square.getB(), square.getC());
         return sideA * sideB;
     }
+
 }

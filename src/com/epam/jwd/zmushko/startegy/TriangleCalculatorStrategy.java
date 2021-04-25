@@ -3,17 +3,16 @@ package com.epam.jwd.zmushko.startegy;
 import com.epam.jwd.zmushko.model.Figure;
 import com.epam.jwd.zmushko.model.Triangle;
 
-public class TriangleCalculator implements FigureCalculator {
+public class TriangleCalculatorStrategy implements FigureCalculatorStrategy {
 
-    private static TriangleCalculator instance;
+    private static TriangleCalculatorStrategy instance;
 
-    private TriangleCalculator() {
-
+    private TriangleCalculatorStrategy() {
     }
 
-    public static TriangleCalculator getInstance() {
+    public static TriangleCalculatorStrategy getInstance() {
         if (instance == null) {
-            instance = new TriangleCalculator();
+            instance = new TriangleCalculatorStrategy();
         }
         return instance;
     }
@@ -35,4 +34,5 @@ public class TriangleCalculator implements FigureCalculator {
         double p = (sideA + sideB + sideC) / 2;
         return Math.sqrt(p * (p - sideA) * (p - sideB) * (p - sideC));
     }
+
 }

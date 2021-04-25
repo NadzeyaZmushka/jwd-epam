@@ -2,7 +2,7 @@ package com.epam.jwd.zmushko.startegy;
 
 import com.epam.jwd.zmushko.model.Figure;
 
-public enum LineCalculator implements FigureCalculator {
+public enum MultiAngleCalculatorStrategy implements FigureCalculatorStrategy {
     INSTANCE;
 
     @Override
@@ -14,4 +14,5 @@ public enum LineCalculator implements FigureCalculator {
     public double calculateArea(Figure figure) {
         return 0;
     }
+
 }

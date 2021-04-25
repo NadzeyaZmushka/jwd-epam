@@ -1,14 +1,13 @@
 package com.epam.jwd.zmushko.model;
 
 import com.epam.jwd.zmushko.exception.FigureCannotExistException;
-import com.epam.jwd.zmushko.startegy.SquareCalculator;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+import com.epam.jwd.zmushko.startegy.FigureCalculatorStrategy;
+import com.epam.jwd.zmushko.startegy.SquareCalculatorStrategy;
 
 import java.util.Objects;
 
 public class Square extends Figure {
-    public static final Logger LOGGER = LogManager.getLogger();
+
     private final Point a;
     private final Point b;
     private final Point c;
@@ -16,8 +15,7 @@ public class Square extends Figure {
 
     private Square(Point[] points) {
         name = "Square";
-        type = FigureType.SQUARE;
-        figureCalculator = SquareCalculator.getInstance();
+        figureCalculator = SquareCalculatorStrategy.getInstance();
         this.a = points[0];
         this.b = points[1];
         this.c = points[2];
@@ -40,11 +38,29 @@ public class Square extends Figure {
         return d;
     }
 
-    static Square create(Point[] points) throws FigureCannotExistException {
+    public static Square create(Point[] points) throws FigureCannotExistException {
         if (points.length < 4) {
             throw new FigureCannotExistException("Not enough points to create square");
         }
         return new Square(points);
+    }
+
+    @Override
+    public boolean isValid() throws FigureCannotExistException {
+        Square s = this;
+        FigureCalculatorStrategy calculator = s.getFigureCalculator();
+        if (s.getA().equals(s.getB()) || s.getA().equals(s.getC()) ||
+                s.getA().equals(s.getD()) || s.getB().equals(s.getC()) ||
+                s.getB().equals(s.getD()) || s.getC().equals(s.getD())) {
+            throw new FigureCannotExistException("not enough points");
+        } else if (calculator.side(s.getA(), s.getB()) != calculator.side(s.getB(), s.getC()) ||
+                calculator.side(s.getC(), s.getD()) != calculator.side(s.getD(), s.getA()) ||
+                calculator.side(s.getB(), s.getC()) != calculator.side(s.getD(), s.getA()) ||
+                calculator.side(s.getA(), s.getC()) != calculator.side(s.getB(), s.getD())) {
+            throw new FigureCannotExistException("figure is rectangle but not square");
+        } else {
+            return true;
+        }
     }
 
     @Override
@@ -73,4 +89,5 @@ public class Square extends Figure {
                 ", name='" + name + '\'' +
                 '}';
     }
+
 }
