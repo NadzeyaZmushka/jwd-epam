@@ -11,7 +11,7 @@ import java.util.stream.Collectors;
 public class DataReader {
 
     public static List<String> readFromFile() {
-        String filePath = "src/com/epam/jwd/zmushko/resource/point.txt";
+        String filePath = "src/resource/point.txt";
         List<String> coordinateToString = new ArrayList<>();
         try (BufferedReader reader = new BufferedReader(new FileReader(filePath))) {
             coordinateToString = reader.lines()

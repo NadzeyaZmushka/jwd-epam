@@ -5,9 +5,9 @@ import com.epam.jwd.zmushko.util.DataReader;
 
 import java.util.List;
 
-public class ArrayOfPoints {
+public class ArrayOfPointsFactory {
 
-    private ArrayOfPoints() {
+    private ArrayOfPointsFactory() {
     }
 
     public static Point[] createArrayOfPoints(int length) {
